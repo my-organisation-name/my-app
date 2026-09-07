@@ -71,8 +71,24 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is connected to Vercel via its **GitHub integration** — deploys
+only ever happen from GitHub, never from a local machine:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Pushing to a branch with an open PR builds a **Preview Deployment** and
+  posts the URL on the PR, usually within a minute or two.
+- Merging a PR into `main` (the Production Branch) builds a **Production
+  Deployment** from that merge commit.
+
+So the fastest way to see a change live is: push the commit, open the
+preview link Vercel posts on the PR. No local Vercel CLI step is needed for
+this, by design.
+
+**Policy: never run `vercel deploy` / `vercel --prod` locally against this
+project**, and don't `vercel link` it on a local machine. Vercel's Hobby
+plan has no team RBAC to enforce this technically, so it's enforced by
+simply not creating a local, authenticated path to deploy it — the GitHub
+integration is the only connection that should exist.
+
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more on the underlying build.
