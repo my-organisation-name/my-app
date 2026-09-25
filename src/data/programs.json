@@ -1,0 +1,84 @@
+{
+  "programs": [
+    {
+      "id": "prog01",
+      "name": "New Start — Full Body",
+      "difficulty": "beginner",
+      "targetAreas": ["fullBody"],
+      "daysPerWeek": 3,
+      "sessionMinutes": 20,
+      "description": "A gentle, joint-friendly full-body starting point for someone new to exercise.",
+      "exerciseIds": ["ex001", "ex002", "ex003", "ex021", "ex016"]
+    },
+    {
+      "id": "prog02",
+      "name": "New Start — Core & Pelvic Floor",
+      "difficulty": "beginner",
+      "targetAreas": ["core", "pelvicFloor"],
+      "daysPerWeek": 2,
+      "sessionMinutes": 15,
+      "description": "Short, low-impact sessions focused on core and pelvic floor foundations.",
+      "exerciseIds": ["ex007", "ex009", "ex010", "ex025", "ex006"]
+    },
+    {
+      "id": "prog03",
+      "name": "Keep Moving — Mobility & Lower Body",
+      "difficulty": "beginner",
+      "targetAreas": ["mobility", "lowerBody"],
+      "daysPerWeek": 3,
+      "sessionMinutes": 20,
+      "description": "Joint-friendly mobility work paired with light lower-body strengthening.",
+      "exerciseIds": ["ex017", "ex016", "ex012", "ex023", "ex021"]
+    },
+    {
+      "id": "prog04",
+      "name": "Level Up — Full Body Strength",
+      "difficulty": "active",
+      "targetAreas": ["fullBody"],
+      "daysPerWeek": 4,
+      "sessionMinutes": 30,
+      "description": "For those already active — a fuller-body session with more load and less rest.",
+      "exerciseIds": ["ex001", "ex022", "ex004", "ex019", "ex002", "ex011"]
+    },
+    {
+      "id": "prog05",
+      "name": "Level Up — Upper Body Focus",
+      "difficulty": "active",
+      "targetAreas": ["upperBody"],
+      "daysPerWeek": 3,
+      "sessionMinutes": 30,
+      "description": "Upper-body strength for someone already exercising and wanting more variety.",
+      "exerciseIds": ["ex005", "ex013", "ex014", "ex015", "ex024"]
+    },
+    {
+      "id": "prog06",
+      "name": "Level Up — Core & Lower Body",
+      "difficulty": "active",
+      "targetAreas": ["core", "lowerBody"],
+      "daysPerWeek": 4,
+      "sessionMinutes": 30,
+      "description": "A more challenging core and lower-body combination for regular exercisers.",
+      "exerciseIds": ["ex019", "ex022", "ex006", "ex002", "ex024"]
+    },
+    {
+      "id": "prog07",
+      "name": "Quick Reset — Pelvic Floor & Mobility",
+      "difficulty": "beginner",
+      "targetAreas": ["pelvicFloor", "mobility"],
+      "daysPerWeek": 2,
+      "sessionMinutes": 15,
+      "description": "A short, gentle session for days with limited time or energy.",
+      "exerciseIds": ["ex009", "ex025", "ex017", "ex016"]
+    },
+    {
+      "id": "prog08",
+      "name": "Full Session — Strength & Balance",
+      "difficulty": "active",
+      "targetAreas": ["fullBody", "mobility"],
+      "daysPerWeek": 5,
+      "sessionMinutes": 45,
+      "description": "A longer, fuller session combining strength, core, and balance work for someone training most days.",
+      "exerciseIds": ["ex001", "ex022", "ex004", "ex013", "ex019", "ex023", "ex017"]
+    }
+  ]
+}
