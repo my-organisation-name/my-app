@@ -16,21 +16,7 @@ import {
   type PlacementAnswers,
 } from "@/lib/program/placement";
 import { ProgramSummary } from "@/components/program/ProgramSummary";
-import { Button, Card, ChoiceCard, Note } from "@/components/ui";
-
-/**
- * Plain-language wording of the general questions in the PAR-Q+ screening
- * questionnaire. Should be checked by the program's exercise professional.
- */
-const HEALTH_QUESTIONS = [
-  "A doctor has told me I have a heart condition or high blood pressure",
-  "I feel pain in my chest at rest, during daily activities, or when active",
-  "I've lost my balance from dizziness, or lost consciousness, in the last 12 months",
-  "I've been diagnosed with another ongoing medical condition",
-  "I take prescribed medication for an ongoing medical condition",
-  "I have a bone, joint or soft-tissue problem that activity could make worse",
-  "A doctor has said I should only exercise under medical supervision",
-];
+import { Button, Card, ChoiceCard } from "@/components/ui";
 
 const EXPERIENCE_OPTIONS: { value: Experience; label: string; hint: string }[] =
   [
@@ -91,7 +77,6 @@ const EQUIPMENT_LABELS: Record<(typeof EQUIPMENT_OPTIONS)[number], string> = {
 
 const STEPS = [
   "welcome",
-  "health",
   "experience",
   "focus",
   "time",
@@ -116,14 +101,12 @@ export function Onboarding() {
   const existing = useMemberProfile();
 
   const [step, setStep] = useState<Step>("welcome");
-  const [healthYes, setHealthYes] = useState<string[]>([]);
-  const [pelvicSymptoms, setPelvicSymptoms] = useState(false);
   const [experience, setExperience] = useState<Experience | null>(null);
   const [focus, setFocus] = useState<Focus | null>(null);
   const [daysPerWeek, setDaysPerWeek] = useState(3);
   const [minutesPerSession, setMinutesPerSession] = useState(20);
   const [equipment, setEquipment] = useState<string[]>(["chair"]);
-  const [sensitiveJoints, setSensitiveJoints] = useState(false);
+  const [preferJointFriendly, setPreferJointFriendly] = useState(false);
   const [chosenId, setChosenId] = useState<string | null>(null);
 
   const stepIndex = STEPS.indexOf(step);
@@ -141,8 +124,7 @@ export function Onboarding() {
           daysPerWeek,
           minutesPerSession,
           equipment,
-          sensitiveJoints,
-          healthFlag: healthYes.length > 0,
+          preferJointFriendly,
         }
       : null;
 
@@ -186,69 +168,6 @@ export function Onboarding() {
           />
           <Button onClick={next}>Let&apos;s begin</Button>
         </div>
-      )}
-
-      {step === "health" && (
-        <fieldset>
-          <legend className="contents">
-            <StepHeading
-              title="First, a quick health check"
-              intro="Tick any that apply to you. This helps us keep things safe. It isn't a test."
-            />
-          </legend>
-          <div className="space-y-3">
-            {HEALTH_QUESTIONS.map((q) => (
-              <ChoiceCard
-                key={q}
-                type="checkbox"
-                name="health"
-                label={q}
-                checked={healthYes.includes(q)}
-                onChange={() => setHealthYes(toggle(healthYes, q))}
-              />
-            ))}
-            <ChoiceCard
-              type="checkbox"
-              name="pelvic"
-              label="I notice leaking, heaviness or discomfort in my pelvic floor"
-              hint="Very common around menopause, and very treatable."
-              checked={pelvicSymptoms}
-              onChange={() => setPelvicSymptoms(!pelvicSymptoms)}
-            />
-          </div>
-
-          {healthYes.length > 0 && (
-            <div className="mt-6">
-              <Note tone="warning">
-                <p className="font-semibold">Thank you for letting us know.</p>
-                <p className="mt-1 text-sm">
-                  Please check in with your GP before you start, and let them
-                  know you&apos;re planning some gentle strength work.
-                  We&apos;ll start you on our gentlest programs, and you can
-                  move up whenever you&apos;re ready.
-                </p>
-              </Note>
-            </div>
-          )}
-          {pelvicSymptoms && (
-            <div className="mt-4">
-              <Note tone="accent">
-                <p className="text-sm">
-                  A women&apos;s health physiotherapist can assess your pelvic
-                  floor and tailor exercises for you. It&apos;s well worth a
-                  visit. In the meantime, skip any exercise that brings on
-                  symptoms.
-                </p>
-              </Note>
-            </div>
-          )}
-
-          <Button className="mt-8" onClick={next}>
-            {healthYes.length === 0 && !pelvicSymptoms
-              ? "None of these apply, continue"
-              : "Continue"}
-          </Button>
-        </fieldset>
       )}
 
       {step === "experience" && (
@@ -364,22 +283,22 @@ export function Onboarding() {
           </fieldset>
           <fieldset className="mt-8">
             <legend className="mb-3 font-semibold">
-              Are your joints feeling achy or sensitive at the moment?
+              Would you like us to favour joint-friendly exercises?
             </legend>
             <div className="grid grid-cols-2 gap-3">
               <ChoiceCard
                 type="radio"
                 name="joints"
-                label="Yes, go gently"
-                checked={sensitiveJoints}
-                onChange={() => setSensitiveJoints(true)}
+                label="Yes please"
+                checked={preferJointFriendly}
+                onChange={() => setPreferJointFriendly(true)}
               />
               <ChoiceCard
                 type="radio"
                 name="joints"
-                label="Not really"
-                checked={!sensitiveJoints}
-                onChange={() => setSensitiveJoints(false)}
+                label="No preference"
+                checked={!preferJointFriendly}
+                onChange={() => setPreferJointFriendly(false)}
               />
             </div>
           </fieldset>
@@ -438,9 +357,8 @@ export function Onboarding() {
           )}
 
           <p className="mt-10 text-xs text-muted-foreground">
-            This program offers general exercise guidance and isn&apos;t a
-            substitute for medical advice. Stop and rest if anything feels
-            painful or wrong.
+            This is a general fitness program. Go at your own pace and stop and
+            rest if anything doesn&apos;t feel right.
           </p>
         </div>
       )}

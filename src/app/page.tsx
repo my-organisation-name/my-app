@@ -8,7 +8,7 @@ const PROMISES = [
   },
   {
     title: "Built for the menopause years",
-    body: "Strength training helps protect muscle and bone as hormones change. Pelvic floor and joint comfort are built in from day one.",
+    body: "Made with women in their menopause years in mind, with core and pelvic floor strength and joint-friendly options built in.",
   },
   {
     title: "Short, doable sessions",

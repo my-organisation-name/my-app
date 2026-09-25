@@ -19,9 +19,6 @@ it("walks a newcomer from welcome to a free trial on a gentle program", async ()
   );
 
   await user.click(screen.getByRole("button", { name: /let's begin/i }));
-  await user.click(
-    screen.getByRole("button", { name: /none of these apply/i }),
-  );
   await user.click(screen.getByLabelText(/new to strength exercise/i));
   await user.click(screen.getByRole("button", { name: /continue/i }));
   await user.click(screen.getByLabelText(/feel stronger all over/i));
@@ -36,20 +33,6 @@ it("walks a newcomer from welcome to a free trial on a gentle program", async ()
   await user.click(screen.getByRole("button", { name: /free trial/i }));
 
   expect(readProfile()?.programId).toBe("prog01");
-});
-
-it("shows a kind GP note when a health question applies", async () => {
-  const user = userEvent.setup();
-  render(
-    <MockAuthProvider>
-      <Onboarding />
-    </MockAuthProvider>,
-  );
-
-  await user.click(screen.getByRole("button", { name: /let's begin/i }));
-  await user.click(screen.getByLabelText(/heart condition/i));
-
-  expect(screen.getByText(/check in with your GP/i)).toBeInTheDocument();
 });
 
 it("steps through a session, remembers a swap and records how it felt", async () => {

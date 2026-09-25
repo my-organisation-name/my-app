@@ -24,9 +24,7 @@ export interface PlacementAnswers {
   daysPerWeek: number;
   minutesPerSession: number;
   equipment: string[];
-  sensitiveJoints: boolean;
-  /** Any "yes" on the health check keeps someone on gentle programs. */
-  healthFlag: boolean;
+  preferJointFriendly: boolean;
 }
 
 export interface Recommendation {
@@ -43,7 +41,6 @@ const FOCUS_AREAS: Record<Focus, TargetArea[]> = {
 };
 
 export function levelFor(answers: PlacementAnswers): Difficulty {
-  if (answers.healthFlag) return "beginner";
   return answers.experience === "regular" ? "active" : "beginner";
 }
 
@@ -67,7 +64,7 @@ function score(program: Program, answers: PlacementAnswers): number {
   );
   total -= missing.length * 8;
 
-  if (answers.sensitiveJoints) {
+  if (answers.preferJointFriendly) {
     const hard = getProgramExercises(program).filter((e) => !e.jointFriendly);
     total -= hard.length * 4;
   }

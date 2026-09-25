@@ -30,19 +30,17 @@ Exercises without a swap show a "do fewer reps / slow it down" suggestion
 instead. The whole **New Start — Core & Pelvic Floor** program currently has
 no swaps.
 
-## 2. Health check wording
+## 2. Not a medical app
 
-Plain-language versions of the seven general PAR-Q+ questions, plus a
-pelvic-floor symptom question that suggests a women's health
-physiotherapist. See `HEALTH_QUESTIONS` in
-`src/components/onboarding/Onboarding.tsx`. Any "yes" to the seven
-questions shows a GP note and limits recommendations to beginner programs.
+The onboarding deliberately asks no health, symptom or medical questions
+and gives no medical advice. It asks only about experience, goals, time,
+equipment and a preference for joint-friendly exercises.
 
 ## 3. Program matching
 
 `src/lib/program/placement.ts` picks a starting program from: experience
 (new / returning / regular), focus, days and minutes available, equipment
-at home, and joint sensitivity.
+at home, and a preference for joint-friendly exercises.
 
 ## 4. Gaps in the current content
 

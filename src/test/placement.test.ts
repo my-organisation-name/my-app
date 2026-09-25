@@ -10,8 +10,7 @@ const base: PlacementAnswers = {
   daysPerWeek: 3,
   minutesPerSession: 20,
   equipment: ["chair"],
-  sensitiveJoints: false,
-  healthFlag: false,
+  preferJointFriendly: false,
 };
 
 const top = (answers: Partial<PlacementAnswers>) =>
@@ -34,17 +33,6 @@ describe("recommendPrograms", () => {
       minutesPerSession: 30,
     });
     expect(program.difficulty).toBe("active");
-  });
-
-  it("keeps anyone who flags a health concern on beginner programs", () => {
-    const results = recommendPrograms({
-      ...base,
-      experience: "regular",
-      healthFlag: true,
-    });
-    expect(results.every((r) => r.program.difficulty === "beginner")).toBe(
-      true,
-    );
   });
 
   it("prefers programs that fit the time available", () => {
