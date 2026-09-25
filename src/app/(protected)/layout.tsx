@@ -2,16 +2,15 @@
 
 import { RequireAuth } from "@/components/auth/RequireAuth";
 import { LogoutButton } from "@/components/auth/LogoutButton";
-import { useAuth } from "@/lib/auth/mock-auth-context";
+import Link from "next/link";
+import { APP_NAME } from "@/components/ui";
 
 function ProtectedHeader() {
-  const { user } = useAuth();
-
   return (
-    <header className="flex items-center justify-between border-b border-black/[.08] px-8 py-4 dark:border-white/[.145]">
-      <span className="text-sm text-zinc-600 dark:text-zinc-400">
-        {user?.email}
-      </span>
+    <header className="flex items-center justify-between border-b border-border px-6 py-4">
+      <Link href="/dashboard" className="font-bold text-primary">
+        {APP_NAME}
+      </Link>
       <LogoutButton />
     </header>
   );

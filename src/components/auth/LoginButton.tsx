@@ -14,7 +14,7 @@ export function LoginButton() {
         loginWithRedirect();
         router.push("/dashboard");
       }}
-      className="flex h-12 items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc]"
+      className="inline-flex items-center justify-center rounded-full px-5 py-3 text-base font-semibold text-foreground transition-colors hover:bg-muted"
     >
       Sign in
     </button>
